@@ -11,4 +11,5 @@ type Repository repository.Repository
 func main() {
 	app := fiber.New()
 	bootstrap.InitApp(app)
+
 }

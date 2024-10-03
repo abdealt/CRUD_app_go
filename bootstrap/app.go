@@ -13,11 +13,13 @@ import (
 )
 
 // InitApp initialise l'application Fiber avec les middleware et les configurations nécessaires
+// app est une instance de l'application Fiber
 func InitApp(app *fiber.App) {
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal(err)
 	}
+	// Chargement des variables
 	config := &storage.Config{
 		Host:     os.Getenv("DB_HOST"),
 		Port:     os.Getenv("DB_PORT"),
@@ -32,6 +34,7 @@ func InitApp(app *fiber.App) {
 		log.Fatal("Could not load the database")
 	}
 
+	// Migration de la table users à la base de données
 	err = migrations.MigrateUsers(db)
 
 	if err != nil {
@@ -42,7 +45,13 @@ func InitApp(app *fiber.App) {
 		DB: db,
 	}
 
-	app.Use(cors.New(cors.Config{AllowCredentials: true}))
+	// Ajout des middleware
+	// Middleware permet de sécuriser les requêtes et ajouter des informations supplémentaires
+	app.Use(cors.New(cors.Config{
+		AllowCredentials: true,
+		AllowOrigins:     "http://localhost:8080",
+		// AllowHeaders: "Origin, Content-Type, Accept",
+	}))
 	repo.SetupRoutes(app)
-	app.Listen(":8081")
+	app.Listen(":8080")
 }

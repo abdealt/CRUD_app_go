@@ -8,5 +8,6 @@ import (
 // Cette méthode prend en argument une instance de l'application Fiber
 // repo est un pointeur sur la structure Repository
 func (repo *Repository) SetupRoutes(app *fiber.App) {
-
+	api := app.Group("/api")
+	api.Get("/users", repo.GetUsers)
 }
