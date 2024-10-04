@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/abdealt/go_crud/bootstrap"  // Import du package bootstrap qui initialise l'application
-	"github.com/abdealt/go_crud/repository" // Import du package repository qui contient la logique d'accès aux données
+	"github.com/abdealt/go_crud/repository" // Import du package repository qui contient la logique d'accès aux données (Routes, Controller)
 	"github.com/gofiber/fiber/v2"           // Import du framework Fiber pour la gestion des requêtes HTTP et des routes
 )
 
@@ -15,6 +15,6 @@ func main() {
 	// Création d'une nouvelle instance de l'application Fiber
 	app := fiber.New()
 
-	// Initialisation de l'application Fiber en configurant les middleware, routes, etc.
+	// Appel de la fonction InitApp qui est dans le package bootstrap
 	bootstrap.InitApp(app)
 }

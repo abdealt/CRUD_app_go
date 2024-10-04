@@ -8,5 +8,5 @@ import (
 // Elle contient un attribut DB qui est un pointeur vers l'instance de GORM.
 // L'objectif est de centraliser les interactions avec la base de données au sein de cette structure.
 type Repository struct {
-	DB *gorm.DB // DB représente la connexion à la base de données. Ce pointeur vers gorm.DB permet d'exécuter des requêtes SQL via GORM.
+	DB *gorm.DB // DB est la connexion à la base de données. Ce pointeur vers gorm.DB permet d'exécuter des requêtes SQL via GORM.
 }

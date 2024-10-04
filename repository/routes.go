@@ -14,4 +14,20 @@ func (repo *Repository) SetupRoutes(app *fiber.App) {
 	// Définition d'une route GET pour récupérer la liste des utilisateurs
 	// Lorsque l'URL "/api/users" est appelée, la méthode GetUsers de la structure Repository est exécutée
 	api.Get("/users", repo.GetUsers)
+
+	// Définition d'une route POST pour ajouter un utilisateur
+	// Lorsque l'URL "/api/user" est appelée avec une requête POST, la méthode CreateUser de la structure Repository est exécutée
+	api.Post("/users", repo.CreateUser)
+
+	// Définition d'une route PUT pour mettre à jour un utilisateur
+	// Lorsque l'URL "/api/users/:id" est appelée avec une requête PUT, la méthode UpdateUser de la structure Repository est exécutée
+	api.Patch("/users/:id", repo.UpdateUser)
+
+	// Définition d'une route DELETE pour supprimer un utilisateur
+	// Lorsque l'URL "/api/users/:id" est appelée avec une requête DELETE, la méthode DeleteUser de la structure Repository est exécutée
+	api.Delete("/users/:id", repo.DeleteUser)
+
+	// Définition d'une route GET pour récupérer un utilisateur par son ID (Vue de Détails)
+	// Lorsque l'URL "/api/users/:id" est appelée, la méthode GetUser de la structure Repository est exécutée
+	api.Get("/users/:id", repo.GetUser)
 }
